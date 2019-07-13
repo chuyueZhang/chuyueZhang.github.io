@@ -19,17 +19,17 @@ console.log()      //向控制台输出
 alert()            //弹出警告框输出
 ```
 #### js编写位置
-1. 外联文件
+* 外联文件
  ```HTML
      <script src="引入的文件位置"></script>
  ```
-2. 内联文件
+* 内联文件
  ```HTML
      <script type="text/javascript">
          js代码编写的位置
      </script>
  ```
-3. 内嵌代码(结构与行为耦合，不使用)
+* 内嵌代码(结构与行为耦合，不使用)
  ```HTML
      <input type="button" onclick="alert('弹出')"></input>
      <a href="javascript:alert('弹出');"></a>
@@ -50,28 +50,28 @@ alert()            //弹出警告框输出
 ```
 #### js标识符
 * 所有可以自定义的变量都叫做标识符，并且遵循以下规范
-  1. 只能以字母数字，下划线，$构成
-  2. 不能以数字开头
-  3. 不能使用ES的关键字和保留字
-  4. 一般使用驼峰命名法
+    * 只能以字母数字，下划线，$构成
+    * 不能以数字开头
+    * 不能使用ES的关键字和保留字
+    * 一般使用驼峰命名法
 * 标识符以unicode编码表示，因此可以使用UTF-8的所有内容，但是一般只使用英文
 #### js基本数据类型
-1. `string`
-2. `number`
+* `string`
+* `number`
     * 可以表示整数与浮点数
     * 2进制浮点数以分数表示，不准确
     * NaN与Infinity是数值的字面量，表示非数与无穷
     * typeof 参数  检测某个值的类型
-3. `boolean`
+* `boolean`
     * 只有两个值：`true  false`
-4. `null`
+* `null`
 ```javascript
 //表示一个空对象
          var a = null;
          console.log(typeof a);
 //结果为object
 ```
-5. `undefined`
+* `undefined`
 ```javascript
 //已经声明的变量未赋值则成为undefined
         var a;
@@ -79,11 +79,11 @@ alert()            //弹出警告框输出
 //结果为undefined
 ```
 #### 强制类型转换
-1. `string`
+* `string`
     * 两种办法：`a.toString()`或者`String()`
       * toString只能用于对象，因此null和undefined无法调用
       * String()对于Number, String, Boolean来说会调用底层的toString()方法，对于null和undefined会直接进行转换
-2. `number`
+* `number`
     * 三种方法：`Number()`, `parseInt()`, `parseFloat()`
         * `Number()`：
             *    对于字符串来说如果只包含数字，直接转换成数字，如果包含非数字转换成NaN，如果是""或者"  "则转换成0
@@ -95,7 +95,7 @@ alert()            //弹出警告框输出
             *    从左到右依次解析，需要非整数直接舍去，第一位非整数返回NaN
         * `parseFloat()`：
             *    与parseInt()相似，只是遇到第一位小数点不会忽略会转换成小数，其余与之相同
-3. `boolean`
+* `boolean`
     * 一种方法：`Boolean()`
         *    对于数字：只有0跟NaN会转换成false
         *    对于字符串：只有""会转换成false
