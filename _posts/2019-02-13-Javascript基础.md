@@ -13,6 +13,7 @@ tags:
 ---
 # 前言
 > Javascript最重要也是最基础的就是那些运算操作符了，这些内容是必须时刻掌握一点都不能忘
+
 # 正文
 ## js输出
 * document.write   向body中写字符串
