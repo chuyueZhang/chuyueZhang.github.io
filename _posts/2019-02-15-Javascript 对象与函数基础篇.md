@@ -26,7 +26,7 @@ tags:
     3. 自定义对象
         * 由开发人员自定义的对象
 
-###### 创建对象
+###### 创建对象的基础方法
 
  * new所调用的函数是一个构造函数`constructor()`，构造函数是专门用来创建对象的函数
  * 使用typeof语句会返回object
@@ -381,11 +381,11 @@ obj.test = obj2;
 
 ###### this的值
 
-- 当调用函数时，解析器会隐式传入一个参数this，它是一个对象
+- 当调用函数时，解析器会隐式传入一个参数`this`，它是一个对象
 
-    1. 当以函数的形式调用时，this永远是全局作用域window
-    2. 当以对象的方法调用时，this是调用这个方法的对象
-    3. 当以构造函数调用时，this就是新创建的对象
+    1. 当以函数的形式调用时，`this`永远是全局作用域`window`
+    2. 当以对象的方法调用时，`this`是调用这个方法的对象
+    3. 当以构造函数调用时，`this`就是新创建的对象
 
 - 作用：
     ```javascript
@@ -399,3 +399,174 @@ obj.test = obj2;
     //结果为1, 2, 3
     //可以使用this来使方法/函数内的值发生变化
     ```
+
+#### 创建对象的高级方法
+
+* 还有几种方法被用来方便地创建对象
+    
+    ps: 可以使用instanceof来检测一个变量是谁的实例
+
+
+###### 工厂方法：
+
+```javascript
+    function createPerson(name, age){
+        var obj = new Object();
+        obj.name = name;
+        obj.age = age;
+        retrun obj;
+    }
+    function createDog(name, age){
+        var obj = new Object();
+        obj.name = name;
+        obj.age = age;
+        retrun obj;
+    }
+    var person = createPerson("aaa", 16);
+    var dog = createDog("bbb", 18);
+    console.log(instanceof person);
+    console.log(instanceof dog);
+    //结果都为Object
+```
+
+缺点：无法得知所创建的是一个什么对象，所以出现了构造函数来解决这个问题
+
+###### 构造函数：
+
+```javascript
+    function Person(name, age){
+        this.name = name;
+        this.age = age;
+        this.sayName = function(){
+            console.log(this.name);
+        }
+    }
+    function Dog(name, age){
+        this.name = name;
+        this.age = age;
+        this.sayName = function(){
+            console.log(this.name);
+        }
+    }
+    var person1 = new Person("aaa", 16);
+    var person1 = new Person("ccc", 14);
+    var dog = new Dog("bbb", 18);
+    console.log(instanceof person1);
+    console.log(instanceof dog);
+    //结果分别为Person， Dog
+```
+
+构造函数与普通函数在使用上的区别就是是否使用了`new`，构造函数又被称为类，对类作`new`操作等到的结果被称为实例
+
+* 构造函数的执行流程：
+
+    1. 立即新建1个对象
+    2. 将构造函数的`this`值赋值为新创建的对象
+    3. 依次执行构造函数内的代码
+    4. 将新建的对象返回
+
+* 构造函数改进:
+
+    按照上述代码编写会在给对象创建方法时重复创建函数，当实例化类次数增加时会浪费大量内存，因此需要将重复创建的方法函数变成只创建一次
+
+    ```javascript
+    console.log(person1.sayName == person2.sayName);
+    //结果为false，证明的确重复创建了函数
+    ```
+    
+    可以将方法声明在全局作用域中
+
+    ```javascript
+    function Person(name, age){
+        this.name = name;
+        this.age = age;
+        this.sayName = func;
+    }
+    function func(){
+        console.log(this.name);
+    }
+    var person1 = new Person("aaa", 16);
+    var person2 = new Person("bbb", 18);
+    console.log(person1.sayName == person2.sayName);
+    //结果为true,证明是同一个函数
+    ```
+            
+    但是这种办法会污染全局命名空间并且不够安全，有可能会被其他函数覆盖
+
+###### 原型对象：
+
+* 每一个类都可以有一个原型对象`prototype`，它是一个对象，并且这个类的实例会有一个原型属性`__proto__`，它的值是这个实例的类的原型对象地址
+* 因此修改类的原型对象的属性也会改变这个类的实例的原型属性所指向的那个原型对象
+* 可以利用原型的特性为类开辟出一个新的公共空间让这个类的每一个实例都可以使用这个公共空间的值或者方法而不会污染全局命名空间
+
+```javascript
+function Person(name, age){
+    this.name = name;
+    this.age = age;
+}
+Person.prototype = function(){
+    console.log(this.name);
+}
+var person1 = new Person("a",12);
+console.log(person1.__proto__ == Person.prototype);
+//结果为true
+```
+
+* 所有对象都有原型属性`__proto__`，由于原型对象也是对象，因此也具有原型属性`__proto__`
+
+    ```javascript
+    console.log(Person.prototype.__proto__);
+    //结果为object
+    ```
+
+* Object的实例的原型没有原型
+    
+    ```javascript
+    var a = new Object();
+    console.log(a.__proto__.__proto__);
+    //结果为null
+    ```
+
+* 所有对象都是Object对象的实例，包括原型对象，因此原型的回溯最多到Object实例的原型为止，也就是原型对象的原型为止
+
+    实例中变量查找顺序：
+
+    1. 先在被实例化的类中的变量之间查找，如果找到则输出，否则进入它的原型对象
+    2. 在类中的原型对象中的变量之间查找，如果找到则输出，否则进入它的原型对象
+    3. 在原型对象的原型中的变量之间查找，如果找到则输出，否则输出`undefined`
+
+    使用`in`语句来查找属性是否属于某个对象时会向它的原型中查找
+
+    如果不想查找原型中的属性，使用`hasOwnProperty`方法
+    ```javascript
+    function Person(){}
+    Person.prototype.a = 1;
+    var person = new Person();
+    person.b = 1;
+    console.log("a" in person);
+    console.log(person.hasOwnProperty("a"));
+    console.log(person.hasOwnProperty("b"));
+    //结果为true, false, true
+    ```
+    
+* 当在页面中打印一个对象时，实际上输出的是这个对象的valueOf方法的返回值，因此可以通过修改对象的valueOf方法来修改打印对象时的结果
+
+    ```javascript
+    function Person(name){
+        this.name = name;
+    }
+    Person.prototype.valueOf = function(){
+        return "name = " + this.name;
+    };
+    var person = new Person("a");
+    console.log(person);
+    结果为name = "a"        //在实际测试中，结果与浏览器相关
+    ```
+
+    当将对象强制转换成数字时会首先调用valueOf方法，当此方法返回自己时再调用toString
+    当对象强制转换成字符串时只调用toString方法
+
+#### 垃圾回收
+
+* 当创建对象之后对所有这个对象的变量赋值为null时，这个对象就永远无法被操作，这个对象就称为垃圾
+* js拥有自动的垃圾回收机制，不需要也不能手动地回收垃圾，能做的只有将不再使用的对象赋值为null
