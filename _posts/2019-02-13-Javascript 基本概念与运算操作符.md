@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Javascript 基础
-subtitle:   Javascript 基本概念与运算操作符
+title:      Javascript 基本概念与运算操作符
+subtitle:   了解Javascript核心语法
 date:       2019-02-13
 author:     QY
 header-img: img/post-bg-ios9-web.jpg

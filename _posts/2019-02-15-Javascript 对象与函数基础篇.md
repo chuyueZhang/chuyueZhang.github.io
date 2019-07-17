@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      Javascript 基础
-subtitle:   Javascript 对象与函数基础篇
-date:       2019-02-16
+title:      Javascript 对象与函数
+subtitle:   入门基础篇
+date:       2019-02-15
 author:     QY
 header-img: img/post-bg-coffee.jpg
 catalog: true
@@ -407,7 +407,7 @@ obj.test = obj2;
     ps: 可以使用instanceof来检测一个变量是谁的实例
 
 
-###### 工厂方法：
+###### 工厂方法
 
 ```javascript
     function createPerson(name, age){
@@ -431,7 +431,7 @@ obj.test = obj2;
 
 缺点：无法得知所创建的是一个什么对象，所以出现了构造函数来解决这个问题
 
-###### 构造函数：
+###### 构造函数
 
 ```javascript
     function Person(name, age){
@@ -493,7 +493,7 @@ obj.test = obj2;
             
     但是这种办法会污染全局命名空间并且不够安全，有可能会被其他函数覆盖
 
-###### 原型对象：
+###### 原型对象
 
 * 每一个类都可以有一个原型对象`prototype`，它是一个对象，并且这个类的实例会有一个原型属性`__proto__`，它的值是这个实例的类的原型对象地址
 * 因此修改类的原型对象的属性也会改变这个类的实例的原型属性所指向的那个原型对象

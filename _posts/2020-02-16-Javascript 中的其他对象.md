@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Javascript 基础
-subtitle:   Javascript 中的其他对象
+title:      Javascript 中的全局对象
+subtitle:   需要了解的常用全局对象及其方法
 date:       2019-02-16
 author:     QY
 header-img: img/post-bg-desk.jpg
