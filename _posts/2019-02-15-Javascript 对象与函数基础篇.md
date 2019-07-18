@@ -26,119 +26,120 @@ tags:
     3. 自定义对象
         * 由开发人员自定义的对象
 
-###### 创建对象的基础方法
+- 创建对象的基础方法
 
- * new所调用的函数是一个构造函数`constructor()`，构造函数是专门用来创建对象的函数
- * 使用typeof语句会返回object
-```javascript
-var obj = new Object();
-console.log(typeof obj);    //"object"
-```
+    * new所调用的函数是一个构造函数`constructor()`，构造函数是专门用来创建对象的函数
+    * 使用typeof语句会返回object
+    ```javascript
+    var obj = new Object();
+    console.log(typeof obj);    //"object"
+    ```
 
-###### 增加属性
+- 增加属性
 
-  * 语法：
+    * 语法：
 
-      对象.属性名 = 属性值;
+        对象.属性名 = 属性值;
 
-      `obj.name = "111";`
+        `obj.name = "111";`
 
-  * 属性名可以不遵循标识符的规范，不遵循规范时需要其他方式来增删查改但是一般尽量遵守规范，属性值可以是任何数据类型，包括null,undefined,object当是object时可以无限嵌套
-```javascript
-var obj2 = new Object();
-obj2.name = "333";
-obj.test = obj2;
-```
+    * 属性名可以不遵循标识符的规范，不遵循规范时需要其他方式来增删查改但是一般尽量遵守规范，属性值可以是任何数据类型，包括null,undefined,object当是object时可以无限嵌套
+    ```javascript
+    var obj2 = new Object();
+    obj2.name = "333";
+    obj.test = obj2;
+    ```
 
-###### 修改属性
+- 修改属性
 
-* 语法：
+    * 语法：
 
-    对象.属性名 = 属性值;
+        对象.属性名 = 属性值;
 
-    `obj.name = "222";`
+        `obj.name = "222";`
 
-* 与增加属性方法类似，只是将已有值覆盖
+    * 与增加属性方法类似，只是将已有值覆盖
 
-###### 查询属性
-- 语法：
-
-    对象.属性名
-
-    `console.log(obj.name); //222`
-
-- 当对象的属性为另一个对象时.重复使用来获取对象的对象的属性值
-
-    `console.log(obj.test.name);  //333`
-
-###### 删除属性
-- 语法：
-
-    delete 对象.属性
-
-    `delete obj.name;`
-
-    `console.log(obj.name); //undefined`
-
-- 当查询对象的某个属性不存在时，会返回undefined
-  
-###### 使用中括号
-
-- 当属性名没有遵循标识符规范时需要使用[]来增删查改相应属性，属性名可以是变量或者字符串
+- 查询属性
     - 语法：
 
-        对象[属性名] = 属性值
+        对象.属性名
 
-```javascript
-        obj["123"] = 345;  //字符串
-        var test = "123";
-        console.log(obj[test]);  //变量
-        //结果为345
-```
+        `console.log(obj.name); //222`
 
-###### in语句
+    - 当对象的属性为另一个对象时.重复使用来获取对象的对象的属性值
 
-用来查询某个对象是否有相应属性名,属性名必须是字符串或者是变量，有则返回true，没有返回false
+        `console.log(obj.test.name);  //333`
 
-- 语法：
+- 删除属性
+    - 语法：
 
-    属性名 in 对象
+        `delete` 对象.属性
 
-    `console.log("123" in obj);`
+        `delete obj.name;`
 
-    结果为true
+        `console.log(obj.name); //undefined`
+
+    - 当查询对象的某个属性不存在时，会返回`undefined`
+  
+- 使用中括号
+
+    - 当属性名没有遵循标识符规范时需要使用[]来增删查改相应属性，属性名可以是变量或者字符串
+        - 语法：
+
+            *`对象[属性名] = 属性值`*
+
+    ```javascript
+            obj["123"] = 345;  //字符串
+            var test = "123";
+            console.log(obj[test]);  //变量
+            //结果为345
+    ```
+
+- in语句
+
+    用来查询某个对象是否有相应属性名,属性名必须是字符串或者是变量，有则返回`true`，没有返回`false`
+
+    - 语法：
+
+        属性名 in 对象
+
+        `console.log("123" in obj);`
+
+        结果为true
+
+- 对象字面量
+
+    - 可以使用对象字面量来新建对象，效果与new Object()相同
+    - 语法：
+
+        {属性名: 属性值, 属性名: 属性值...};
+
+        `var obj = {name: "a", age: "16", gender: "男"};`
+
+    - 属性名可以使用引号包起来，但是一般不使用，当属性名不遵循标识符规范时，需要使用引号包起来，最后一个属性写完后不加逗号
 
 ###### 基本和引用数据类型
 
-在js中，内存分为栈内存和堆内存，因为基本数据大小一般比较小，js专门将这些数据存放在固定的内存范围内即栈内存来保存变量与变量值，而引用数据大小一般较大，js需要创建新内存空间即堆内存来保存对象的内容
+    在js中，内存分为栈内存和堆内存，因为基本数据大小一般比较小，js专门将这些数据存放在固定的内存范围内即栈内存来保存变量与变量值，而引用数据大小一般较大，js需要创建新内存空间即堆内存来保存对象的内容
 
-1. 当声明变量时，会在栈内存最下层中新建一个变量
-2. 取值时按照声明顺序取值
-3. 当调用new新建对象时会在堆内存中创建新的内存空间来新建一个对象
-4. 由于新建的内存地址不确定，取对象时需要用相应内存地址取用相应的对象
-5. 给变量赋值为基本数据类型时，会直接修改栈内存中变量对应的变量值为相应的变量值
-6. 给变量赋值为引用数据类型时，会直接修改栈内存中变量对应的变量值为内存地址
-7. 两个变量的内存地址指向同一个对象时，修改一个变量的对象的值，另一个变量的对象的值也会发生改变
+    1. 当声明变量时，会在栈内存最下层中新建一个变量
+    2. 取值时按照声明顺序取值
+    3. 当调用new新建对象时会在堆内存中创建新的内存空间来新建一个对象
+    4. 由于新建的内存地址不确定，取对象时需要用相应内存地址取用相应的对象
+    5. 给变量赋值为基本数据类型时，会直接修改栈内存中变量对应的变量值为相应的变量值
+    6. 给变量赋值为引用数据类型时，会直接修改栈内存中变量对应的变量值为内存地址
+    7. 两个变量的内存地址指向同一个对象时，修改一个变量的对象的值，另一个变量的对象的值也会发生改变
 
-```javascript
-    var obj1 = new Object();
-    obj.name = "111";
-    var a = obj1,b = obj1;
-    a.name = "222";
-    console.log(b.name);
-    //结果为222
-```
+    ```javascript
+        var obj1 = new Object();
+        obj.name = "111";
+        var a = obj1,b = obj1;
+        a.name = "222";
+        console.log(b.name);
+        //结果为222
+    ```
 
-###### 对象字面量
-
-- 可以使用对象字面量来新建对象，效果与new Object()相同
-- 语法：
-
-    {属性名: 属性值, 属性名: 属性值...};
-
-    `var obj = {name: "a", age: "16", gender: "男"};`
-
-- 属性名可以使用引号包起来，但是一般不使用，当属性名不遵循标识符规范时，需要使用引号包起来，最后一个属性写完后不加逗号
 
 #### 函数
 
@@ -176,111 +177,97 @@ obj.test = obj2;
         }
     ```
                 
-###### 形参与实参
+- 形参与实参
 
-- 声明函数时传递的参数叫形参，作用相当于在函数内部声明变量
-- 调用函数时传递的参数叫实参，作用相当于给函数的形参赋值
-- 当实参数量大于形参时，多出来的实参会被忽略
-- 当实参数量小于形参时，未赋值的形参会是undefined类型
-- 实参可以是任意数据类型包括对象与函数，当实参数量过多时，可以考虑将部分实参封装成一个对象传入
+    - 声明函数时传递的参数叫形参，作用相当于在函数内部声明变量
+    - 调用函数时传递的参数叫实参，作用相当于给函数的形参赋值
+    - 当实参数量大于形参时，多出来的实参会被忽略
+    - 当实参数量小于形参时，未赋值的形参会是undefined类型
+    - 实参可以是任意数据类型包括对象与函数，当实参数量过多时，可以考虑将部分实参封装成一个对象传入
 
-    将函数当做实参传入另一个函数：
-    ```javascript
-        function func1(){
-            console.log("a");
-            return "1";
-        }
-        function func2(a){
-            console.log(a);
-        }
-        func2(func1);       //结果为func1对象本身，结果为func1函数的内容
-        func2(func1());     //结果为func1的函数返回值,结果为1
-    ```
-
-###### 返回值
-
-- 使用return语句可以让函数返回特定的值，此时函数中return后面跟的所有语句都不执行
-
-    语法：
-    ```javascript
-        return [返回值];
-
-        function test(a, b){
-            return a+b;
-        }
-        var result = test(1, 2);
-        console.log(result);
-        //结果为3
-    ```
-
-- 当return后不加参数时，相当于函数返回undefined
-- 函数中不使用return时，也相当于返回undefined
-- 返回值可以是任意类型，包括对象和函数
-
-    ```javascript
-        function func1(){
-            function func2(){
-                console.log("func2");
+        将函数当做实参传入另一个函数：
+        ```javascript
+            function func1(){
+                console.log("a");
+                return "1";
             }
-            return func2;
-        }
-        var a = func1();
-        console.log(a);
-        //结果为func2函数本身的内容
-        console.log(a());       //与console.log(func1()());相同
-        //结果为"func2"
-    ```
+            function func2(a){
+                console.log(a);
+            }
+            func2(func1);       //结果为func1对象本身，结果为func1函数的内容
+            func2(func1());     //结果为func1的函数返回值,结果为1
+        ```
 
-###### 立即执行函数
+- 返回值
 
-- 语法：
+    - 使用return语句可以让函数返回特定的值，此时函数中return后面跟的所有语句都不执行
 
-    ```javascript
-    (function([形参1, 形参2...]) {
-            语句...
-        })([实参1, 实参2...])
-    ```
+        语法：
+        ```javascript
+            return [返回值];
 
-- 当写成以下形式时，js会将前半部分当成代码块，无法识别函数声明
-        
-    ```javascript
-    function([形参1, 形参2...]){
-            语句...
-        }([实参1, 实参2...])
-    ```
+            function test(a, b){
+                return a+b;
+            }
+            var result = test(1, 2);
+            console.log(result);
+            //结果为3
+        ```
 
-###### 方法
+    - 当return后不加参数时，相当于函数返回undefined
+    - 函数中不使用return时，也相当于返回undefined
+    - 返回值可以是任意类型，包括对象和函数
 
-- 由于对象的属性可以是任何值，因此也可以将一个函数赋值给一个对象的属性，此时这个函数属性就被叫做方法，需要注意的是，函数与方法只是名称上的不同，其他没有任何区别
+        ```javascript
+            function func1(){
+                function func2(){
+                    console.log("func2");
+                }
+                return func2;
+            }
+            var a = func1();
+            console.log(a);
+            //结果为func2函数本身的内容
+            console.log(a());       //与console.log(func1()());相同
+            //结果为"func2"
+        ```
 
-- 调用对象中的函数，被称为调用这个对象的方法
+- 立即执行函数
 
-    ```javascript
-        var obj = new Object();
-        obj.name = "111";
-        obj.callName = function(){
-            console.log(obj.name);
-        }
-        obj.callName();
-        //结果为"111"
-    ```
+    - 语法：
 
-###### 枚举语句
+        ```javascript
+        (function([形参1, 形参2...]) {
+                语句...
+            })([实参1, 实参2...])
+        ```
 
-- 语法：
-    
-    ```javascript
-    for(var 声明变量 in 对象){
-            语句...
-        }
-        for(var i in obj){
-            console.log(i);     //i为obj对象的属性名
-            console.log(obj[i]);        //obj[i]为obj对象的属性值
-        }
-    ```
-- 对象中有多少个属性，这个循环便会执行多少次
+    - 当写成以下形式时，js会将前半部分当成代码块，无法识别函数声明
+            
+        ```javascript
+        function([形参1, 形参2...]){
+                语句...
+            }([实参1, 实参2...])
+        ```
 
-###### 作用域
+- 方法
+
+    - 由于对象的属性可以是任何值，因此也可以将一个函数赋值给一个对象的属性，此时这个函数属性就被叫做方法，需要注意的是，函数与方法只是名称上的不同，其他没有任何区别
+
+    - 调用对象中的函数，被称为调用这个对象的方法
+
+        ```javascript
+            var obj = new Object();
+            obj.name = "111";
+            obj.callName = function(){
+                console.log(obj.name);
+            }
+            obj.callName();
+            //结果为"111"
+        ```
+
+
+#### 作用域
 
 - 全局作用域
     - 直接写在script标签中的代码都属于全局作用域，它在打开页面时创建，在关闭页面时销毁
@@ -379,7 +366,7 @@ obj.test = obj2;
     //结果为1
     ```
 
-###### this的值
+#### this的值
 
 - 当调用函数时，解析器会隐式传入一个参数`this`，它是一个对象
 
@@ -400,6 +387,22 @@ obj.test = obj2;
     //可以使用this来使方法/函数内的值发生变化
     ```
 
+#### 枚举语句
+
+- 语法：
+    
+    ```javascript
+    for(var 声明变量 in 对象){
+            语句...
+        }
+        for(var i in obj){
+            console.log(i);     //i为obj对象的属性名
+            console.log(obj[i]);        //obj[i]为obj对象的属性值
+        }
+    ```
+
+- 对象中有多少个属性，这个循环便会执行多少次
+
 #### 创建对象的高级方法
 
 * 还有几种方法被用来方便地创建对象
@@ -407,93 +410,93 @@ obj.test = obj2;
     ps: 可以使用instanceof来检测一个变量是谁的实例
 
 
-###### 工厂方法
-
-```javascript
-    function createPerson(name, age){
-        var obj = new Object();
-        obj.name = name;
-        obj.age = age;
-        retrun obj;
-    }
-    function createDog(name, age){
-        var obj = new Object();
-        obj.name = name;
-        obj.age = age;
-        retrun obj;
-    }
-    var person = createPerson("aaa", 16);
-    var dog = createDog("bbb", 18);
-    console.log(instanceof person);
-    console.log(instanceof dog);
-    //结果都为Object
-```
-
-缺点：无法得知所创建的是一个什么对象，所以出现了构造函数来解决这个问题
-
-###### 构造函数
-
-```javascript
-    function Person(name, age){
-        this.name = name;
-        this.age = age;
-        this.sayName = function(){
-            console.log(this.name);
-        }
-    }
-    function Dog(name, age){
-        this.name = name;
-        this.age = age;
-        this.sayName = function(){
-            console.log(this.name);
-        }
-    }
-    var person1 = new Person("aaa", 16);
-    var person1 = new Person("ccc", 14);
-    var dog = new Dog("bbb", 18);
-    console.log(instanceof person1);
-    console.log(instanceof dog);
-    //结果分别为Person， Dog
-```
-
-构造函数与普通函数在使用上的区别就是是否使用了`new`，构造函数又被称为类，对类作`new`操作等到的结果被称为实例
-
-* 构造函数的执行流程：
-
-    1. 立即新建1个对象
-    2. 将构造函数的`this`值赋值为新创建的对象
-    3. 依次执行构造函数内的代码
-    4. 将新建的对象返回
-
-* 构造函数改进:
-
-    按照上述代码编写会在给对象创建方法时重复创建函数，当实例化类次数增加时会浪费大量内存，因此需要将重复创建的方法函数变成只创建一次
+- 工厂方法
 
     ```javascript
-    console.log(person1.sayName == person2.sayName);
-    //结果为false，证明的确重复创建了函数
+        function createPerson(name, age){
+            var obj = new Object();
+            obj.name = name;
+            obj.age = age;
+            retrun obj;
+        }
+        function createDog(name, age){
+            var obj = new Object();
+            obj.name = name;
+            obj.age = age;
+            retrun obj;
+        }
+        var person = createPerson("aaa", 16);
+        var dog = createDog("bbb", 18);
+        console.log(instanceof person);
+        console.log(instanceof dog);
+        //结果都为Object
     ```
-    
-    可以将方法声明在全局作用域中
+
+    缺点：无法得知所创建的是一个什么对象，所以出现了构造函数来解决这个问题
+
+- 构造函数
 
     ```javascript
-    function Person(name, age){
-        this.name = name;
-        this.age = age;
-        this.sayName = func;
-    }
-    function func(){
-        console.log(this.name);
-    }
-    var person1 = new Person("aaa", 16);
-    var person2 = new Person("bbb", 18);
-    console.log(person1.sayName == person2.sayName);
-    //结果为true,证明是同一个函数
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.sayName = function(){
+                console.log(this.name);
+            }
+        }
+        function Dog(name, age){
+            this.name = name;
+            this.age = age;
+            this.sayName = function(){
+                console.log(this.name);
+            }
+        }
+        var person1 = new Person("aaa", 16);
+        var person1 = new Person("ccc", 14);
+        var dog = new Dog("bbb", 18);
+        console.log(instanceof person1);
+        console.log(instanceof dog);
+        //结果分别为Person， Dog
     ```
-            
-    但是这种办法会污染全局命名空间并且不够安全，有可能会被其他函数覆盖
 
-###### 原型对象
+    构造函数与普通函数在使用上的区别就是是否使用了`new`，构造函数又被称为类，对类作`new`操作等到的结果被称为实例
+
+    * 构造函数的执行流程：
+
+        1. 立即新建1个对象
+        2. 将构造函数的`this`值赋值为新创建的对象
+        3. 依次执行构造函数内的代码
+        4. 将新建的对象返回
+
+    * 构造函数改进:
+
+        按照上述代码编写会在给对象创建方法时重复创建函数，当实例化类次数增加时会浪费大量内存，因此需要将重复创建的方法函数变成只创建一次
+
+        ```javascript
+        console.log(person1.sayName == person2.sayName);
+        //结果为false，证明的确重复创建了函数
+        ```
+        
+        可以将方法声明在全局作用域中
+
+        ```javascript
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.sayName = func;
+        }
+        function func(){
+            console.log(this.name);
+        }
+        var person1 = new Person("aaa", 16);
+        var person2 = new Person("bbb", 18);
+        console.log(person1.sayName == person2.sayName);
+        //结果为true,证明是同一个函数
+        ```
+                
+        但是这种办法会污染全局命名空间并且不够安全，有可能会被其他函数覆盖, 想要解决这个问题需要引出一个概念---原型对象
+
+#### 原型对象
 
 * 每一个类都可以有一个原型对象`prototype`，它是一个对象，并且这个类的实例会有一个原型属性`__proto__`，它的值是这个实例的类的原型对象地址
 * 因此修改类的原型对象的属性也会改变这个类的实例的原型属性所指向的那个原型对象
