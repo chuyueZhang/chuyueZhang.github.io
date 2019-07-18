@@ -7,7 +7,7 @@ description: "冰冻三尺非一日之寒."
 keyword: "QY, QY Blog, 青音的博客, setsuriaoto, 青音, Javascript, CSS, HTML"
 url: "https://qyblog.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/chuyueZhang/qyblog.github.io.git" # you code repository
+github_repo: "https://github.com/chuyueZhang/qyblog.github.io" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
