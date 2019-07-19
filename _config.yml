@@ -5,9 +5,9 @@ header-img: img/post-bg-desk.jpg
 email: zhangsazib@hotmail.com
 description: "冰冻三尺非一日之寒."
 keyword: "QY, QY Blog, 青音的博客, setsuriaoto, 青音, Javascript, CSS, HTML"
-url: "http://chuyueZhang.github.io"          # your host, for absolute URL
+url: "https://chuyueZhang.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/chuyueZhang/chuyueZhang.github.io.git" # you code repository
+github_repo: "https://github.com/chuyueZhang/chuyueZhang.github.io" # you code repository
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
@@ -62,11 +62,11 @@ kramdown:
 # Gitalk
 gitalk:
   enable: true    #是否开启Gitalk评论
-  clientID: 1dd9de24e95057a0f9b6                            #生成的clientID
-  clientSecret: dcc3fd43548d51cd84a66ce74190946ebe10f69f    #生成的clientSecret
+  clientID: 9a8555757e5d6587b89a                            #生成的clientID
+  clientSecret: 79e85f55415def5142467c97ff0f29ff2edee131    #生成的clientSecret
   repo: chuyueZhang.github.io    #仓库名称
   owner: chuyueZhang    #github用户名
-  admin: chuyueZhang
+  admin: ['chuyueZhang']
   distractionFreeMode: true #是否启用类似FB的阴影遮罩
 
 

@@ -4,7 +4,7 @@
 
 >  更为详细的教程戳这 [《利用 GitHub Pages 快速搭建个人博客》](http://www.jianshu.com/p/e68fba58f75c) 
 
-### [查看我的博客戳这里 👆](http://chuyueZhang.github.io)
+### [查看我的博客戳这里 👆](https://chuyueZhang.github.io)
 
 ## 致谢
 
@@ -12,5 +12,5 @@
 
 ## License
 
-遵循 MIT 许可证。有关详细,请参阅 [LICENSE](https://github.com/chuyueZhang/chuyueZhang.github.io/blob/master/LICENSE)。
+遵循 MIT 许可证。有关详细,请参阅 [LICENSE](https://github.com/chuyueZhang/qyblog.github.io/blob/master/LICENSE)。
 
