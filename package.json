@@ -3,12 +3,12 @@
     "title": "qy Blog",
     "author": "qingyin <zhangsazib@hotmail.com>",
     "version": "1.7.0",
-    "homepage": "http://qyblog.github.io",
+    "homepage": "https://chuyueZhang.github.io",
     "repository": {
         "type": "git",
-        "url": "https://github.com/chuyueZhang/qyblog.github.io"
+        "url": "https://github.com/chuyueZhang/chuyueZhang.github.io"
     },
-    "bugs": "https://github.com/chuyueZhang/qyblog.github.io/issues",
+    "bugs": "https://github.com/chuyueZhang/chuyueZhang.github.io/issues",
     "devDependencies": {
         "grunt": "~0.4.5",
         "grunt-contrib-less": "~0.11.4",
