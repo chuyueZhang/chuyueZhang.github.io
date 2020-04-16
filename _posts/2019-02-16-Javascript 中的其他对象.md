@@ -410,7 +410,7 @@ var date = new Date("12/11/2016 0:0:0");  //当输入参数时以参数对应的
         var num = new Number(1);
         console.log(typeof num);
         //结果为object
-        ``
+        ```
 
     3. Boolean
 
@@ -548,12 +548,12 @@ var date = new Date("12/11/2016 0:0:0");  //当输入参数时以参数对应的
 
                 当参数为空字符串时，将每个字符都拆分成一个元素存入新数组
 
-            ```javascript
-            var str = "abtcdtef";
-            var result = str.split("t");
-            console.log(result);
-            结果为ab,cd,ef
-            ```
+                ```javascript
+                var str = "abtcdtef";
+                var result = str.split("t");
+                console.log(result);
+                结果为ab,cd,ef
+                ```
 
             2. 第二个参数：决定返回的数组长度
 
@@ -599,7 +599,7 @@ var date = new Date("12/11/2016 0:0:0");  //当输入参数时以参数对应的
 
     2. `[ ]`
 
-        与|含义相同
+        与`|`含义相同
 
         ```javascript
         /[ab]/.test("bc"); //true

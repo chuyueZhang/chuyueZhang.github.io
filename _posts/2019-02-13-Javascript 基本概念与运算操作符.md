@@ -222,6 +222,7 @@ alert()            //弹出警告框输出
 - 关系运算符
 
     * 有以下几种：`<, >, <=, >=`
+  
     ```javascript
     //有一方为number值时，将非number值转换成number值再进行比较
     //NaN与任何值进行任何比较结果都为false， 包括NaN本身
