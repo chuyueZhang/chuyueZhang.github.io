@@ -127,8 +127,8 @@ tags:
    * 方法: 一种特别的属性(属性值是一个函数)
 4. 如何访问对象内部数据
    * `.属性名`    编码简单, 有时无法使用
-   * `[\'属性名\']` 编码复杂, 但能随意使用
-5. 什么时候必须使用`[\'属性名\']`
+   * `['属性名']` 编码复杂, 但能随意使用
+5. 什么时候必须使用`['属性名']`
    * 属性名包含特殊字符, 如-. 空格
    * 属性名不确定时, 使用的是变量的值
 
@@ -217,7 +217,7 @@ $().test()
 
 - 函数的`prototype`属性
 
-    * 每个函数都有一个`prototype`, 默认指向一个`object`空实例对象(原型对象), 但是`Object`除外, 它的`prototype`为`null`
+    * 每个函数都有一个`prototype`, 默认指向一个`object`空实例对象(原型对象), 但是`Object`除外, 它的`prototype`不是实例, 因为`Object.prototype.__proto__`是`null`
     * 原型对象有个`constructor`, 指向函数对象
     ```javascript
     func.prototype.constructor === func;    //true
@@ -227,7 +227,7 @@ $().test()
 
     * 每个函数`function`都有一个`prototype`, 即显式原型
     * 每个实例对象(一般是以`new`语句创建的对象)都有一个`__proto__`, 即隐式原型
-    * 能够直接操作`prototype`但不能直接操作`__prototype__`(ES6之前)
+    * 能够直接操作`prototype`但不能直接操作`__proto__`(ES6之前)
 
 
     ```javascript
@@ -336,7 +336,7 @@ $().test()
 
    * 通过`function`声明的函数在声明之前就能访问到
    * 值: 通过`function`定义的函数本身
-   * 先函数提升再变量提升
+   * 先变量提升再函数提升
    * 在函数中使用未声明的变量会自动声明成全局变量
 
 
@@ -382,7 +382,7 @@ $().test()
    function c(c){
        console.log(c);
    }
-   c(2);
+   c(2);//报错
    ```
 
 ### 作用域与作用域链
@@ -440,7 +440,7 @@ $().test()
    * 让函数外部可以操作到函数内部的数据但并非将变量直接暴露给外部
 6. 闭包的生命周期
    * 在嵌套的内部函数定义时产生
-   * 在嵌套的内部函数成为垃圾对象时
+   * 在嵌套的内部函数成为垃圾对象时释放
 7. 闭包的应用
    - 自定义js模块
         * 具有特定功能的js文件
@@ -675,15 +675,16 @@ mymodule1.toLowerCase();
 
     - 套路:
 
-        1. 创建父类型构造函数
+        1. 创建父类型对象
         2. 创建子类型构造函数
-        3. 在子类型构造函数中使用`call`/`apply`调用父类型构造函数
+        3. 在子类型构造函数中使用`Object.create`创建隐式原型为父类型的对象
+        4. 给此对象添加子类型的属性
 
 
     ```javascript
     var Person = function(o){
         var obj = Object.create(o); //返回一个隐式原型为o的实例
-        obj.class = "student";
+        obj.type = "student";
         obj.say = function(){
             console.log(this.name);
         }
@@ -704,9 +705,8 @@ mymodule1.toLowerCase();
     - 套路
 
 
-        1. 创建父类型构造函数
-        2. 创建子类型构造函数
-        3. 在子类型构造函数中使用call/apply调用父类型构造函数
+        1. 将超类的属性通过构造函数的方式继承给子类(第一次)
+        2. 通过原型继承将超类的方法继承给子类(第二次)
 
 
     ```javascript
@@ -731,6 +731,40 @@ mymodule1.toLowerCase();
     };
     var student = new Student('aa',1,2)
     console.log(student)
+    ```
+
+- 寄生组合继承(借用构造函数继承+寄生继承)
+
+    **没有缺点**
+
+    - 套路
+
+
+        1. 将超类的属性通过构造函数的方式继承给子类(第一次)
+        2. 通过寄生继承将超类的方法继承给子类(第二次)
+
+
+    ```javascript
+    var SuperType = function(name, age) {
+        this.name = name
+        this.age = age
+    }
+    SuperType.prototype.getName = function() {
+        console.log(this.name)
+    }
+
+    var SubType = function(name, age, price) {
+        SuperType.call(this, name, age)
+        this.price = price
+    }
+    SubType.prototype = Object.create(SuperType.prototype)
+    SubType.prototype.getAge = function() {
+        console.log(this.age)
+    }
+    SubType.prototype.constructor = SubType
+    var instance = new SubType('a', 1, 1)
+    instance.getName()  //'a'
+    instance.getAge()   //1
     ```
 
 ### 进程与线程

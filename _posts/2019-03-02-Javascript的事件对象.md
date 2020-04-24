@@ -62,7 +62,7 @@ document.addEventListener('click', function(){})
     }
     ```
 
-- 浏览器的滚动条在chrome中被认为是`documentElement`的`scrollTop`和`scrollLeft`的值，而在IE与firefox被认为是`body`的`scrollTop`和`scrollLeft`的值
+- 浏览器的滚动条被认为是`documentElement`的`scrollTop`和`scrollLeft`的值
 
     因此可以使用一下代码来兼容三种浏览器
 
@@ -323,6 +323,8 @@ W3C标准实现时参考两种方法给出了事件执行的阶段：
     test.addEventListener && test.addEventListener("DOMMouseScroll", test.onmousewheel, false);
     ```
 
+    **ps: DOM3标准中定义了wheelEvent来兼容所有浏览器, 适用于chrome31+, firefox17+, IE9+**
+
 2. 键盘事件
 
     只有可以获取焦点的事件或者让`document`绑定键盘事件才可以触发
@@ -349,15 +351,15 @@ W3C标准实现时参考两种方法给出了事件执行的阶段：
 
     5. mouseout      鼠标移出
 
+    以上四个事件触发机制: 当鼠标移动至绑定监听器的元素或者子元素时就会被触发
+
+    区别: 前两者不会冒泡后两者会
+
     6. contextmenu       上下文菜单事件，可以通过阻止默认行为来自定义上下文菜单
 
     7. beforeunload     通常在切换页面时触发
 
     8. DOMContextLoad    在DOM树渲染完成后触发，不管CSS，JS文件是否渲染完毕
-
-    以上四个事件触发机制: 当鼠标移动至绑定监听器的元素或者子元素时就会被触发
-
-    区别: 前两者不会冒泡后两者会
 
 ###### 事件模拟
 
@@ -400,3 +402,5 @@ API:
 2. `element.fireEvent(eventname, event)`
     第一个参数是事件名，如`onclick`等
     第二个参数是自定义的`event`对象
+
+DOM4标准中已经将各个事件类型定义成构造函数, 通过直接实例化即可得到相应的事件对象
