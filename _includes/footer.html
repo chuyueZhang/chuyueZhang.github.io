@@ -114,6 +114,10 @@
 <!-- Custom Theme JavaScript -->
 <script src="{{ "/js/hux-blog.min.js " | prepend: site.baseurl }}"></script>
 
+<!-- Highlight JavaScript -->
+<script src="{{ "/js/highlight.min.js " | prepend: site.baseurl }}"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
 <!-- Service Worker -->
 {% if site.service-worker %}
 <script type="text/javascript">
