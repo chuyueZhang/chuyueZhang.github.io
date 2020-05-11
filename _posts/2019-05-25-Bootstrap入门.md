@@ -139,7 +139,7 @@ tags:
     ```less
     .make-grid-columns();
     .make-grid-columns() {
-   // 对lg, md, sm, xs四种情况, 都会将一行分成@grid-columns份, 此处为12
+    // 对lg, md, sm, xs四种情况, 都会将一行分成@grid-columns份, 此处为12
       .col(@index) { // 初始化列样式
         @item: ~".col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, . col-lg-@{index}";
         .col((@index + 1), @item);
@@ -163,10 +163,9 @@ tags:
     }
     ```
 
-根据媒体查询来决定开启哪种特定样式
+    根据媒体查询来决定开启哪种特定样式
 
     ```less
-
     .make-grid(xs); //手机优先，当以下三种媒体查询没有效果时默认使用此样式, 否则按照 从小到大的顺序覆盖
     @media (min-width: @screen-sm-min) {
       .make-grid(sm);
@@ -192,6 +191,7 @@ tags:
       .loop-grid-columns(@grid-columns, @class, offset);
     }
     ```
+
 ### `.make-grid(xs)`源码精读
 
 - **运行`.float-grid-columns(@class)`混合**
