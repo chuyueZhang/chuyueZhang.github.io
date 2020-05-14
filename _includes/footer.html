@@ -117,6 +117,11 @@
 <!-- Highlight JavaScript -->
 <script src="{{ "/js/highlight.min.js " | prepend: site.baseurl }}"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+<!-- mathjax JavaScript -->
+<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
 
 <!-- Service Worker -->
 {% if site.service-worker %}
