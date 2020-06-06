@@ -7,9 +7,8 @@ author:     QY
 header-img: img/post-bg-coffee.jpg
 catalog: true
 tags:
-    - css
+    - CSS
     - 进阶知识
-    - less
 ---
 
 # 前言

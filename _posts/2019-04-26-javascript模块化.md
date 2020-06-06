@@ -7,7 +7,7 @@ author:     QY
 header-img: img/post-bg-github-cup.jpg
 catalog: true
 tags:
-    - javascript
+    - Javascript
     - 进阶知识
     - 模块化
 ---
